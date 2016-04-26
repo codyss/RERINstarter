@@ -1,2 +1,3 @@
 // MAIN CONSTS
-export const SOME_CONSTANT = 'SOME_CONSTANT';
+export const ADD_MARKER = 'ADD_MARKER';
+export const SAVE_MAP = 'SAVE_MAP';

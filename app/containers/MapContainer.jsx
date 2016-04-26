@@ -8,11 +8,24 @@ import Marker from '../components/map/Marker.jsx'
 export default class MapContainer extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {markers: List()}
+    this.generateMarkers = this.generateMarkers.bind(this);
+  }
+
+  generateMarkers(places) {
+    const markers = places.map((item,i) => {
+      return (<Marker
+                map={this.props.map}
+                place={item}
+                addMarker={this.props.addMarker}
+                id={i}
+              />)
+    })
+    this.setState()
   }
 
   shouldComponentUpdate(nextProps) {
-    return nextProps.aiportA !== this.props.airportA ||
-          nextProps.aiportB !== this.props.airportB ||
+    return nextProps.places !== this.props.places ||
           nextProps.map !== this.props.map
   }
 
@@ -20,25 +33,12 @@ export default class MapContainer extends React.Component {
     return (
       <Map
         saveMap={this.props.saveMap}
-        markerA={this.props.markerA}
-        markerB={this.props.markerB}
+        markers={this.props.markers}
         map={this.props.map}
       >
-        <Marker
-          map={this.props.map}
-          airport={this.props.airportA}
-          addMarker={this.props.addMarker}
-          airId='airportA'
-        />
-        <Marker
-          map={this.props.map}
-          airport={this.props.airportB}
-          addMarker={this.props.addMarker}
-          airId='airportB'
-        />
+        {this.state.markers}
         <Line
-          airportA={this.props.airportA}
-          airportB={this.props.airportB}
+          places={this.props.places}
           map={this.props.map}
         />
       </Map>
@@ -47,11 +47,9 @@ export default class MapContainer extends React.Component {
 }
 
 MapContainer.propTypes = {
-  airportA: ImmutablePropTypes.map,
-  airportB: ImmutablePropTypes.map,
+  places: ImmutablePropTypes.list,
   addMarker: PropTypes.func,
-  markerA: PropTypes.any.isRequired,
-  markerB: PropTypes.any.isRequired,
+  markers: ImmutablePropTypes.list,
   saveMap: PropTypes.func,
   map: PropTypes.object
 };

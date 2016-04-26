@@ -7,14 +7,12 @@ import * as Actions from '../actions';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.clearPlace = this.clearPlace.bind(this);
     this.addMarker = this.addMarker.bind(this);
     this.saveMap = this.saveMap.bind(this);
   }
 
   shouldComponentUpdate(nextProps) {
-    return nextProps.markerA !== this.props.markerA ||
-          nextProps.markerB !== this.props.markerB
+    return nextProps.markers !== this.props.markers
   }
 
   addMarker(id, marker) {
@@ -27,20 +25,13 @@ class App extends React.Component {
     this.props.dispatch(Actions.saveMap(map))
   }
 
-  clearPlace(id) {
-    // function to pass as props to Clear Marker component
-    this.props.dispatch(Actions.clearMarker(id))
-  }
-
   render() {
     return (
       <MainView>
         <MapContainer
-          placeA={this.props.placeA}
-          placeB={this.props.placeB}
+          places={this.props.places}
           addMarker={this.addMarker}
-          markerA={this.props.markerA}
-          markerB={this.props.markerB}
+          markers={this.props.markers}
           saveMap={this.saveMap}
           map={this.props.map}
         />
@@ -51,10 +42,8 @@ class App extends React.Component {
 
 function mapStateToProps(store) {
   return {
-    placeA: store.main.get('placeA'),
-    placeB: store.main.get('placeB'),
-    markerA: store.main.get('markerA'),
-    markerB: store.main.get('markerB'),
+    places: store.main.get('places'),
+    markers: store.main.get('markers'),
     map: store.main.get('map')
   }
 }

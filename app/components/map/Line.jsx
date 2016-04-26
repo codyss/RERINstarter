@@ -11,21 +11,21 @@ export default class Line extends React.Component {
   // when component receives new props check to see if should draw a line
   componentWillReceiveProps(nextProps) {
     if(this.state.line) this.state.line.setMap(null);
-    if(nextProps.airportA.size && nextProps.airportB.size) {
-      this.createGooglePolyLine(nextProps.airportA, nextProps.airportB, this.props.map)
+    if(nextProps.placeA.size && nextProps.placeB.size) {
+      this.createGooglePolyLine(nextProps.placeA, nextProps.placeB, this.props.map)
     }
   }
 
   shouldComponentUpdate(nextProps) {
-    return nextProps.airportA !== this.props.airportA ||
-          nextProps.airportB !== this.props.airportB
+    return nextProps.placeA !== this.props.placeA ||
+          nextProps.placeB !== this.props.placeB
   }
 
-  // draw a Google Polyline between the two airports on the given map
-  createGooglePolyLine(airportA, airportB, map) {
+  // draw a Google Polyline between the two places on the given map
+  createGooglePolyLine(placeA, placeB, map) {
     const linePoints=[
-      {lat: airportA.get('lat'), lng: airportA.get('lng')},
-      {lat: airportB.get('lat'), lng: airportB.get('lng')}
+      {lat: placeA.get('lat'), lng: placeA.get('lng')},
+      {lat: placeB.get('lat'), lng: placeB.get('lng')}
     ]
     const linePath = new google.maps.Polyline({
       path: linePoints,
@@ -44,7 +44,6 @@ export default class Line extends React.Component {
 }
 
 Line.propTypes = {
-  airportA: ImmutablePropTypes.map,
-  airportB: ImmutablePropTypes.map,
+  places: ImmutablePropTypes.list,
   map: PropTypes.any.isRequired
 };

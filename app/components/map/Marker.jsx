@@ -8,14 +8,14 @@ export default class Marker extends React.Component {
 
   // when component receives new props check to see if should create a marker
   componentWillReceiveProps(nextProps) {
-    if(nextProps.map && nextProps.airport.size && nextProps.airport !== this.props.airport) {
-      const marker = createMapMarker(nextProps.airport, nextProps.map)
-      this.props.addMarker(this.props.airId, marker)
+    if(nextProps.map && nextProps.place.size && nextProps.place !== this.props.place) {
+      const marker = createMapMarker(nextProps.place, nextProps.map)
+      this.props.addMarker(this.props.id, marker)
     }
   }
 
   shouldComponentUpdate(nextProps) {
-    return nextProps.airport !== this.props.airport
+    return nextProps.place !== this.props.place
   }
 
   render() {
@@ -24,15 +24,17 @@ export default class Marker extends React.Component {
 }
 
 Marker.propTypes = {
-  airport: ImmutablePropTypes.map,
-  map: PropTypes.any.isRequired
+  place: ImmutablePropTypes.map,
+  map: PropTypes.any.isRequired,
+  addMarker: PropTypes.func,
+  id: PropTypes.number
 };
 
 
-function createMapMarker(airport, map) {
+function createMapMarker(place, map) {
   return new google.maps.Marker({
-    position: {lat: airport.get('lat'), lng: airport.get('lng')},
+    position: {lat: place.get('lat'), lng: place.get('lng')},
     map: map,
-    title: airport.get('name')
+    title: place.get('name')
   })
 }

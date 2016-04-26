@@ -16,4 +16,18 @@ describe ('Main reducer logic', () => {
 
   })
 
+  describe('Saves the map for access by markers and line', () => {
+    it('saves the created Map to the state', () => {
+
+      const action = {
+        type: types.SAVE_MAP,
+        map: {map: 'testMap'}
+      }
+
+      const nextState = reducer(initialState, action)
+
+      expect(nextState.get('map').map).to.equal('testMap')
+    })
+  })
+
 })
