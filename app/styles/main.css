@@ -1,0 +1,24 @@
+body {
+  font-family: 'Lato', sans-serif;
+  margin: 0px;
+}
+
+/*Header */
+
+
+
+/*Map*/
+
+.mapBox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  margin-left: 0%;
+  margin-right: 0%;
+  margin-top: 174px;
+  width:100%;
+  height: 100vh;
+  height: calc(100vh - (10px));
+  box-sizing: content-box;
+}

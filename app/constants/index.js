@@ -1,0 +1,2 @@
+// MAIN CONSTS
+export const SOME_CONSTANT = 'SOME_CONSTANT';
