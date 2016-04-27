@@ -1,16 +1,3 @@
-# Airport Distance Calculator
-
-App plots any two US airports on a Google Map and displays the distance between the two airports in Nautical Miles.
-
-## Running the application
-
-To run the application, type: 'npm install && npm start' in the command line
-Visit localhost:3000 in Chrome
-
-Note - The application is setup to only run in development mode
-
-Run tests using 'npm test' in the command line (requires an npm install before running)
-
 ## Technologies used
 
 - React
@@ -19,4 +6,4 @@ Run tests using 'npm test' in the command line (requires an npm install before r
 - Node.js / Express - Simple Express server running to access the SITO Airport API
 
 
-Note - No Google API key used in map, as it will run locally without an API key
+Quick starter kit for React, Redux app with Google Map component set up and ready to go with a Immutable List of places
