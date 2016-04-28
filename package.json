@@ -1,5 +1,5 @@
 {
-  "name": "Redux Google Map Starter",
+  "name": "ReduxGoogleMapStarter",
   "version": "1.0.0",
   "description": "Starter pack for React, Redux, Immutable with Express Server- set up with Google Map",
   "main": "index.js",

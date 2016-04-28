@@ -1,5 +1,10 @@
 const path = require('path');
 const express = require('express');
+
+const chalk = require('chalk');
+const bodyParser = require('body-parser');
+const morgan = require('morgan');
+
 const webpack = require('webpack');
 const webpackMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
@@ -27,6 +32,10 @@ if (isDeveloping) {
     }
   });
 
+  app.use(bodyParser.urlencoded({extended: false}));
+  app.use(bodyParser.json());
+  app.use(morgan('dev'));
+
   app.use('/api', api);
   app.use(middleware);
   app.use(webpackHotMiddleware(compiler));
@@ -41,6 +50,12 @@ if (isDeveloping) {
     res.sendFile(path.join(__dirname, 'dist/index.html'));
   });
 }
+
+app.use(function (err, req, res, next) {
+    console.log(chalk.magenta('      ' + err.message));
+    res.status(err.status || 500).end();
+});
+
 
 app.listen(port, '0.0.0.0', function onStart(err) {
   if (err) {

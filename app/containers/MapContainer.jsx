@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import ReactDOM from 'react-dom';
+import { List } from 'immutable'
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import Line from '../components/map/Line.jsx';
 import Map from '../components/map/Map.jsx';
