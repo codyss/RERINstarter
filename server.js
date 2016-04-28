@@ -13,7 +13,7 @@ const config = require('./webpack.config.js');
 const isDeveloping = process.env.NODE_ENV !== 'production';
 const port = isDeveloping ? 3000 : process.env.PORT;
 const app = express();
-module.exports = app;
+
 
 var api = require('./server/index');
 
@@ -63,3 +63,6 @@ app.listen(port, '0.0.0.0', function onStart(err) {
   }
   console.info(`Listening on port ${port} Open up http://0.0.0.0:${port}/ in your browser.`);
 });
+
+
+module.exports = app;
